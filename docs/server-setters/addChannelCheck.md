@@ -14,9 +14,9 @@ Adds a channel check to radio channels.
 -- Example for addChannelCheck
 -- this always has to return true/false
 exports['pma-voice']:addChannelCheck(1, function(source)
-	if IsPlayerAceAllowed(source, 'radio.police') then
-		return true
-	end
-	return false
+    if IsPlayerAceAllowed(source, 'radio.police') then
+        return true
+    end
+    return false
 end)
 ```

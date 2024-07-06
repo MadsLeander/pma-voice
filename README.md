@@ -184,13 +184,13 @@ You can access the state with `Player(source).state['state bag here']`
 
 ```ts
 enum DisabledRadioStates {
-	Enabled = 0,
-	IsDead = 1,
-	IsCuffed = 2,
-	IsPdCuffed = 4,
-	IsUnderWater = 8,
-	DoesntHaveItem = 16,
-	PlayerDisabledRadio = 32,
+    Enabled = 0,
+    IsDead = 1,
+    IsCuffed = 2,
+    IsPdCuffed = 4,
+    IsUnderWater = 8,
+    DoesntHaveItem = 16,
+    PlayerDisabledRadio = 32,
 }
 ```
 

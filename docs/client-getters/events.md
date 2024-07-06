@@ -15,13 +15,13 @@ AddEventHandler("pma-voice:radioActive", function(radioTalking) usingRadio = rad
 AddEventHandler('pma-voice:setTalkingMode', function(newTalkingRange) voiceMode = newTalkingRange end)
 -- returns registered voice modes from shared.lua's `Cfg.voiceModes`
 TriggerEvent("pma-voice:settingsCallback", function(voiceSettings)
-	local voiceTable = voiceSettings.voiceModes
+    local voiceTable = voiceSettings.voiceModes
 
-	-- loop through all voice modes and add them to the table
-	-- the percentage is used for the voice mode slider if this was an actual UI
-	for i = 1, #voiceTable do
-		local distance = math.ceil(((i/#voiceTable) * 100))
-		voiceModes[i] = ("%s"):format(distance)
-	end
+    -- loop through all voice modes and add them to the table
+    -- the percentage is used for the voice mode slider if this was an actual UI
+    for i = 1, #voiceTable do
+        local distance = math.ceil(((i/#voiceTable) * 100))
+        voiceModes[i] = ("%s"):format(distance)
+    end
 end)
 ```
