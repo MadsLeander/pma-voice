@@ -71,14 +71,12 @@ CreateThread(function()
         SetConvarReplicated('voice_useNativeAudio', 'true')
         if sendingRangeOnly == 'not-set' then
             SetConvarReplicated('voice_useSendingRangeOnly', 'true')
-            logger.info(
-                'No convars detected for voice mode, defaulting to \'setr voice_useNativeAudio true\' and \'setr voice_useSendingRangeOnly true\'')
+            logger.info("No convars detected for voice mode, defaulting to \'setr voice_useNativeAudio true\' and \'setr voice_useSendingRangeOnly true\'")
         else
             logger.info('No voice mod detected, defaulting to \'setr voice_useNativeAudio true\'')
         end
     elseif sendingRangeOnly == 'not-set' then
-        logger.warn(
-            "It's recommended to have 'voice_useSendingRangeOnly' set to true, you can do that with 'setr voice_useSendingRangeOnly true', this prevents players who directly join the mumble server from broadcasting to players.")
+        logger.warn("It's recommended to have 'voice_useSendingRangeOnly' set to true, you can do that with 'setr voice_useSendingRangeOnly true', this prevents players who directly join the mumble server from broadcasting to players.")
     end
 
     local radioVolume = GetConvarInt("voice_defaultRadioVolume", 30)
@@ -91,10 +89,9 @@ CreateThread(function()
     then
         SetConvarReplicated("voice_defaultRadioVolume", 30)
         SetConvarReplicated("voice_defaultCallVolume", 60)
-        for i = 1, 5 do
+        for _i = 1, 5 do
             Wait(5000)
-            logger.warn(
-                "`voice_defaultRadioVolume` or `voice_defaultCallVolume` have their value set as a float, this is going to automatically be fixed but please update your convars.")
+            logger.warn("`voice_defaultRadioVolume` or `voice_defaultCallVolume` have their value set as a float, this is going to automatically be fixed but please update your convars.")
         end
     end
 end)
