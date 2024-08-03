@@ -31,9 +31,9 @@ function setVolume(volume, volumeType)
             error(("setVolume got a invalid volume type %s"):format(volumeType))
         end
     else
-        for volumeType, _ in pairs(volumes) do
-            volumes[volumeType] = volumeFraction
-            LocalPlayer.state:set(volumeType, volume, true)
+        for volType, _ in pairs(volumes) do
+            volumes[volType] = volumeFraction
+            LocalPlayer.state:set(volType, volume, true)
         end
         resyncVolume('all', volumeFraction)
     end
@@ -45,7 +45,7 @@ end)
 exports('getRadioVolume', function()
     return volumes['radio'] * 100
 end)
-exports("setCallVolume", function(vol)
+exports('setCallVolume', function(vol)
     setVolume(vol, 'call')
 end)
 exports('getCallVolume', function()
