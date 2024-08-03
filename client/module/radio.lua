@@ -46,7 +46,7 @@ function setTalkingOnRadio(plySource, enabled)
 
     if not isRadioEnabled() then return logger.info("[radio] Ignoring setTalkingOnRadio. radioEnabled: %s disableRadio: %s", radioEnabled, LocalPlayer.state.disableRadio) end
     -- If we're on a call we don't want to toggle their voice disabled this will break calls.
-    local enabled = enabled or callData[plySource]
+    enabled = enabled or callData[plySource]
     toggleVoice(plySource, enabled, 'radio')
     playMicClicks(enabled)
 end
