@@ -217,7 +217,7 @@ end
 ---plays the mic click if the player has them enabled.
 ---@param clickType boolean whether to play the 'on' or 'off' click.
 function playMicClicks(clickType)
-    if micClicks ~= 'true' then return logger.verbose("Not playing mic clicks because client has them disabled") end
+    if MicClicks ~= 'true' then return logger.verbose("Not playing mic clicks because client has them disabled") end
     -- TODO: Add customizable radio click volumes
     sendUIMessage({
         sound = (clickType and 'audio_on' or 'audio_off'),
@@ -262,7 +262,7 @@ function setVoiceProperty(type, value)
         })
     elseif type == 'micClicks' then
         local val = tostring(value)
-        micClicks = val
+        MicClicks = val
         SetResourceKvp('pma-voice_enableMicClicks', val)
     end
 end
@@ -316,7 +316,7 @@ function handleRadioAndCallInit()
         end
     end
 
-    for tgt, _enabled in pairs(callData) do
+    for tgt, enabled in pairs(callData) do
         if tgt ~= playerServerId then
             toggleVoice(tgt, true, 'call')
         end
