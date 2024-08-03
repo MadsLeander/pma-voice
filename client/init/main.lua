@@ -316,7 +316,7 @@ function handleRadioAndCallInit()
         end
     end
 
-    for tgt, enabled in pairs(callData) do
+    for tgt, _enabled in pairs(callData) do
         if tgt ~= playerServerId then
             toggleVoice(tgt, true, 'call')
         end

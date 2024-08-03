@@ -44,7 +44,7 @@ function addNearbyPlayers()
     for i = 1, #players do
         local ply = players[i]
         local serverId = GetPlayerServerId(ply)
-        local shouldAdd, distance = addProximityCheck(ply)
+        local shouldAdd, _distance = addProximityCheck(ply)
         if shouldAdd then
             -- if distance then
             --     currentTargets[serverId] = distance
