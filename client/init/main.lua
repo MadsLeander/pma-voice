@@ -18,7 +18,7 @@ submixIndicies = {}
 ---@param volume number between 0 and 100
 ---@param volumeType string the volume type (currently radio & call) to set the volume of (opt)
 function setVolume(volume, volumeType)
-    type_check({ volume, "number" })
+    type_check({ volume, 'number' })
     local volumeFraction = volume / 100
 
     if volumeType then
@@ -28,14 +28,14 @@ function setVolume(volume, volumeType)
             volumes[volumeType] = volumeFraction
             resyncVolume(volumeType, volumeFraction)
         else
-            error(('setVolume got a invalid volume type %s'):format(volumeType))
+            error(("setVolume got a invalid volume type %s"):format(volumeType))
         end
     else
         for volumeType, _ in pairs(volumes) do
             volumes[volumeType] = volumeFraction
             LocalPlayer.state:set(volumeType, volume, true)
         end
-        resyncVolume("all", volumeFraction)
+        resyncVolume('all', volumeFraction)
     end
 end
 
@@ -95,22 +95,22 @@ submixIndicies['call'] = callEffectId
 
 -- Callback is expected to return data in an array, this is for compatibility sake with js, index 0 should be the name and index 1 should be the submixId
 -- the callback is sent the effectSlot it can register to, not sure if this is needed, but its here for safety
-exports("registerCustomSubmix", function(callback)
+exports('registerCustomSubmix', function(callback)
     local submixTable = callback()
-    type_check({ submixTable, "table" })
+    type_check({ submixTable, 'table' })
     local submixName, submixId = submixTable[1], submixTable[2]
-    type_check({ submixName, "string" }, { submixId, "number" })
+    type_check({ submixName, 'string' }, { submixId, 'number' })
     logger.info("Creating submix %s with submixId %s", submixName, submixId)
     submixIndicies[submixName] = submixId
 end)
-TriggerEvent("pma-voice:registerCustomSubmixes")
+TriggerEvent('pma-voice:registerCustomSubmixes')
 
 --- export setEffectSubmix
 --- Sets a user defined audio submix for radio and phonecall effects
 ---@param type string either "call" or "radio"
 ---@param effectId number submix id returned from CREATE_AUDIO_SUBMIX
-exports("setEffectSubmix", function(type, effectId)
-    type_check({ type, "string" }, { effectId, "number" })
+exports('setEffectSubmix', function(type, effectId)
+    type_check({ type, 'string' }, { effectId, 'number' })
     if submixIndicies[type] then
         submixIndicies[type] = effectId
     end
@@ -135,7 +135,7 @@ local disableSubmixReset = {}
 ---@param moduleType string the volume & submix to use for the voice.
 function toggleVoice(plySource, enabled, moduleType)
     if mutedPlayers[plySource] then return end
-    logger.verbose('[main] Updating %s to talking: %s with submix %s', plySource, enabled, moduleType)
+    logger.verbose("[main] Updating %s to talking: %s with submix %s", plySource, enabled, moduleType)
     local distance = currentTargets[plySource]
     if enabled and (not distance or distance > 4.0) then
         print(volumes[moduleType])
@@ -175,12 +175,12 @@ end
 --- resyncs the call/radio/etc volume to the new volume
 ---@param volumeType any
 function resyncVolume(volumeType, newVolume)
-    if volumeType == "all" then
-        resyncVolume("radio", newVolume)
-        resyncVolume("call", newVolume)
-    elseif volumeType == "radio" then
+    if volumeType == 'all' then
+        resyncVolume('radio', newVolume)
+        resyncVolume('call', newVolume)
+    elseif volumeType == 'radio' then
         updateVolumes(radioData, newVolume)
-    elseif volumeType == "call" then
+    elseif volumeType == 'call' then
         updateVolumes(callData, newVolume)
     end
 end
@@ -200,11 +200,11 @@ function addVoiceTargets(...)
         for id, _ in pairs(targets[i]) do
             -- we don't want to log ourself, or listen to ourself
             if addedPlayers[id] and id ~= playerServerId then
-                logger.verbose('[main] %s is already target don\'t re-add', id)
+                logger.verbose("[main] %s is already target don\'t re-add", id)
                 goto skip_loop
             end
             if not addedPlayers[id] then
-                logger.verbose('[main] Adding %s as a voice target', id)
+                logger.verbose("[main] Adding %s as a voice target", id)
                 addedPlayers[id] = true
                 MumbleAddVoiceTargetPlayerByServerId(voiceTarget, id)
             end
@@ -220,7 +220,7 @@ function playMicClicks(clickType)
     if micClicks ~= 'true' then return logger.verbose("Not playing mic clicks because client has them disabled") end
     -- TODO: Add customizable radio click volumes
     sendUIMessage({
-        sound = (clickType and "audio_on" or "audio_off"),
+        sound = (clickType and 'audio_on' or 'audio_off'),
         volume = (clickType and volumes['click_on'] or volumes['click_off'])
     })
 end
@@ -254,13 +254,13 @@ exports('toggleMutePlayer', toggleMutePlayer)
 ---@param type string what voice property you want to change (only takes 'radioEnabled' and 'micClicks')
 ---@param value any the value to set the type to.
 function setVoiceProperty(type, value)
-    if type == "radioEnabled" then
+    if type == 'radioEnabled'then
         radioEnabled = value
         handleRadioEnabledChanged(value)
         sendUIMessage({
             radioEnabled = value
         })
-    elseif type == "micClicks" then
+    elseif type == 'micClicks' then
         local val = tostring(value)
         micClicks = val
         SetResourceKvp('pma-voice_enableMicClicks', val)

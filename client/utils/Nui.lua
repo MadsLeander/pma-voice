@@ -4,7 +4,7 @@ function sendUIMessage(message)
     SendNUIMessage(message)
 end
 
-RegisterNUICallback("uiReady", function(data, cb)
+RegisterNUICallback('uiReady', function(data, cb)
     uiReady:resolve(true)
 
     cb('ok')

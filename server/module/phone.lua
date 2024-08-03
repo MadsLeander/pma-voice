@@ -2,7 +2,7 @@
 ---@param source number the player to remove from the call
 ---@param callChannel number the call channel to remove them from
 function removePlayerFromCall(source, callChannel)
-    logger.verbose('[call] Removed %s from call %s', source, callChannel)
+    logger.verbose("[call] Removed %s from call %s", source, callChannel)
 
     callData[callChannel] = callData[callChannel] or {}
     for player, _ in pairs(callData[callChannel]) do
@@ -17,7 +17,7 @@ end
 ---@param source number the player to add to the call
 ---@param callChannel number the call channel to add them to
 function addPlayerToCall(source, callChannel)
-    logger.verbose('[call] Added %s to call %s', source, callChannel)
+    logger.verbose("[call] Added %s to call %s", source, callChannel)
     -- check if the channel exists, if it does set the varaible to it
     -- if not create it (basically if not callData make callData)
     callData[callChannel] = callData[callChannel] or {}

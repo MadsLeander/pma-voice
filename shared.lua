@@ -9,7 +9,7 @@ if not IsDuplicityVersion() then
     LocalPlayer = LocalPlayer
     playerServerId = GetPlayerServerId(PlayerId())
 
-    if gameVersion == "redm" then
+    if gameVersion == 'redm' then
         function CreateAudioSubmix(name)
             return Citizen.InvokeNative(0x658d2bc8, name, Citizen.ResultAsInteger())
         end
@@ -86,9 +86,9 @@ function tPrint(tbl, indent)
     indent = indent or 0
     for k, v in pairs(tbl) do
         local tblType = type(v)
-        local formatting = string.rep("  ", indent) .. k .. ": "
+        local formatting = string.rep('  ', indent) .. k .. ': '
 
-        if tblType == "table" then
+        if tblType == 'table' then
             print(formatting)
             tPrint(v, indent + 1)
         elseif tblType == 'boolean' then
