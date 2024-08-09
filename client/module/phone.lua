@@ -52,6 +52,10 @@ exports('removePlayerFromCall', function()
     setCallChannel(0)
 end)
 
+exports('getCallChannel', function()
+    return callChannel
+end)
+
 RegisterNetEvent('pma-voice:clSetPlayerCall', function(_callChannel)
     if GetConvarInt('voice_enableCalls', 1) ~= 1 then return end
     callChannel = _callChannel
