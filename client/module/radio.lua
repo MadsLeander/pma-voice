@@ -290,3 +290,9 @@ local function removeRadioDisableBit(bit)
 end
 exports('removeRadioDisableBit', removeRadioDisableBit)
 
+---Returns the radio names of the players on your channel
+---@return table
+local function getRadioNames()
+    return radioNames
+end
+exports('getRadioNames', getRadioNames)
